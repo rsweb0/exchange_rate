@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require "rails"
+require 'require_all'
+
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -15,9 +17,18 @@ require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+# load all ruby files in the directory "lib" and its subdirectories
+require_all 'lib/fixer/api/*.rb'
+require_all 'lib/fixer/request.rb'
+require_all 'lib'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+if File.exist? File.expand_path('../../.env', __FILE__)
+  require 'dotenv/rails-now'
+end
 
 module ExchangeRate
   class Application < Rails::Application
