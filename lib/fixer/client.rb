@@ -8,7 +8,7 @@ module Fixer
 
     def initialize
       @api_key = ENV['FIXER_API_KEY']
-      @base_url =  ENV['FIXER_BASE_URL']
+      @base_url = ENV['FIXER_BASE_URL']
     end
 
     private
@@ -18,7 +18,7 @@ module Fixer
     end
 
     def query_parameters
-      "access_key=#{api_key}"
+      "access_key=#{api_key}&symbols=#{ENV['SUPPORTED_CURRENCIES']}"
     end
   end
 end

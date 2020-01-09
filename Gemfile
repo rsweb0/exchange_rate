@@ -45,3 +45,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'require_all'
 gem 'rest-client'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'sucker_punch', '~> 2.0'
