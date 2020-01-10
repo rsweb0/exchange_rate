@@ -1,6 +1,8 @@
 require 'factory_bot_rails'
 require 'shoulda-matchers'
 require 'database_cleaner'
+require 'vcr'
+require 'webmock/rspec'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -21,4 +23,14 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.include FactoryBot::Syntax::Methods
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/cassettes'
+  c.hook_into :webmock
+  c.default_cassette_options = { record: :once }
+  # c.default_cassette_options = { record: :new_episodes, match_requests_on: %i[method uri headers body] }
+  # c.filter_sensitive_data('<HIDDEN>') do |_interaction|
+  #   #'api_key'
+  # end
 end
