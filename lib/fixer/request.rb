@@ -7,6 +7,8 @@ module Fixer
       Fixer::Error.on_fail(resp) unless resp['success']
       resp
     rescue StandardError => e
+      raise e if e.is_a?(Fixer::Error::ClientError)
+
       Fixer::Error.on_complete(e)
     end
   end

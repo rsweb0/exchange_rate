@@ -2,23 +2,25 @@
 
 module Fixer
   class Client < Request
-    attr_accessor :api_key, :base_url
+    BASE_URL = 'http://data.fixer.io/api'
+    attr_accessor :api_key
     include Api::Latest
     include Api::HistoricalRates
 
-    def initialize
-      @api_key = ENV['FIXER_API_KEY']
-      @base_url = ENV['FIXER_BASE_URL']
+    def initialize(api_key = nil)
+      @api_key = api_key || ENV['FIXER_API_KEY']
     end
 
     private
 
     def request_url(path)
-      "#{base_url}/#{path}?#{query_parameters}"
+      "#{BASE_URL}/#{path}?#{query_parameters}"
     end
 
     def query_parameters
-      "access_key=#{api_key}&symbols=#{ENV['SUPPORTED_CURRENCIES']}"
+      query_string = "access_key=#{api_key}"
+      "#{query_string}&symbols=#{ENV['SUPPORTED_CURRENCIES']}" if ENV['SUPPORTED_CURRENCIES']
+      query_string
     end
   end
 end

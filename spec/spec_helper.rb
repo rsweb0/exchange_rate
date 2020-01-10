@@ -28,9 +28,8 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/cassettes'
   c.hook_into :webmock
-  c.default_cassette_options = { record: :once }
-  # c.default_cassette_options = { record: :new_episodes, match_requests_on: %i[method uri headers body] }
-  # c.filter_sensitive_data('<HIDDEN>') do |_interaction|
-  #   #'api_key'
-  # end
+  c.default_cassette_options = { record: :none, match_requests_on: %i[method uri headers body] }
+  c.filter_sensitive_data('<HIDDEN>') do |_interaction|
+    'fce2d9c76ecc411eb366c3a80384a276'
+  end
 end
