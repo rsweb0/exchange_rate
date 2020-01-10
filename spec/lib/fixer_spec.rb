@@ -22,4 +22,9 @@ RSpec.describe 'Fixer Interaction' do
       expect { client.historical('20-01-01') }.to raise_error(Fixer::Error::BadRequest)
     end
   end
+
+  it 'should raise error if fixer.io server is down' do
+    allow(RestClient).to receive(:get).and_raise(RestClient::NotFound.new)
+    expect { client.historical('2010-01-01') }.to raise_error(Fixer::Error::Unknown)
+  end
 end

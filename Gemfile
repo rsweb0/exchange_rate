@@ -56,3 +56,4 @@ gem 'rest-client'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'sucker_punch', '~> 2.0'
 gem 'rubocop'
+gem 'simplecov', require: false, group: :test
