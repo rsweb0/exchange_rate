@@ -1,0 +1,40 @@
+AllCops:
+  TargetRubyVersion: 2.6.0
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+  - config/routes.rb
+  - spec/**/*.rb
+  - config/routes/*.rb
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+  - config/routes.rb
+  IgnoreCopDirectives: true
+
+Metrics/MethodLength:
+  Max: 50
+  Exclude:
+  - db/migrate/*.rb
+
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+inherit_from: .rubocop-excludes.yml
