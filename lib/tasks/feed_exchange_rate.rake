@@ -18,4 +18,14 @@ namespace :feed do
       CurrencyExchangeRate.create(bulk_data)
     end
   end
+
+  desc 'Import latest currency_exchange_rates every hour from fixer.io'
+  task import_latest_fixer_record: :environment do
+    CreateCurrencyExchangeRatesJob.perform_now(Date.today.to_s)
+  end
+
+  desc 'Import yesterday currency_exchange_rates from fixer.io'
+  task import_yesterday_fixer_record: :environment do
+    CreateCurrencyExchangeRatesJob.perform_now(1.day.ago.to_date.to_s)
+  end
 end
