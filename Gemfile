@@ -63,3 +63,4 @@ gem 'sucker_punch', '~> 2.0'
 gem 'rubocop'
 gem 'simplecov', require: false, group: :test
 gem 'draper'
+gem 'honeybadger', '~> 4.0'
