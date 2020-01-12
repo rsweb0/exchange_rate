@@ -22,4 +22,14 @@ RSpec.describe CurrencyExchangeRate, type: :model do
   it 'exists_for_date? should return false if specified date record is not exists' do
     expect(CurrencyExchangeRate.exists_for_date?('1900-01-01'.to_date)).to be_falsey
   end
+
+  it 'should raise error ActiveRecord::RecordNotUnique if(date, base_currency, target_currency) pair already exists' do
+    FactoryBot.create(:currency_exchange_rate, date: Date.today,
+                                               base_currency: 'CAD', target_currency: 'USD', rate: 1.5)
+
+    expect do
+      FactoryBot.create(:currency_exchange_rate, date: Date.today,
+                                                 base_currency: 'CAD', target_currency: 'USD', rate: 1.5)
+    end .to raise_error(ActiveRecord::RecordNotUnique)
+  end
 end
