@@ -21,6 +21,15 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
+  end
+
+
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.include FactoryBot::Syntax::Methods
 end
@@ -28,8 +37,5 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/cassettes'
   c.hook_into :webmock
-  c.default_cassette_options = { record: :none, match_requests_on: %i[method uri headers body] }
-  c.filter_sensitive_data('<HIDDEN>') do |_interaction|
-    'fce2d9c76ecc411eb366c3a80384a276'
-  end
+  c.default_cassette_options = { record: :none }
 end

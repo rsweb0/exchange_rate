@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Fixer Interaction' do
-  let(:client) { Fixer::Client.new('fce2d9c76ecc411eb366c3a80384a276') }
+  let(:client) { Fixer::Client.new('a1a3b1133a6eda6ba1742b4a1089c0d1') }
 
   it 'should fetch latest currency exchange data' do
     VCR.use_cassette('latest') do

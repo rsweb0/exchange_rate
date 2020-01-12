@@ -18,9 +18,7 @@ module Fixer
     end
 
     def query_parameters
-      query_string = "access_key=#{api_key}"
-      "#{query_string}&symbols=#{ENV['SUPPORTED_CURRENCIES']}" if ENV['SUPPORTED_CURRENCIES']
-      query_string
+      "access_key=#{api_key}&symbols=#{Constants::SUPPORTED_CURRENCIES.join(',')}"
     end
   end
 end
