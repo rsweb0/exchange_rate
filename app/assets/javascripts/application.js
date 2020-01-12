@@ -11,4 +11,10 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require chartkick
+//= require Chart.bundle
+//= require jquery3
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require moment.min
 //= require_tree .
