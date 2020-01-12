@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.next-weekpicker1, .previous-weekpicker1, .dataTables_length {
+  display: none;
+}
+
+.min-rate{
+  background-color: #FF4500;
+}
+
+.max-rate{
+  background-color: #32CD32;
+}
+
+.dataTables_filter label {
+  float: right;
+}
+
 body {
   background-color: #fff;
   color: #333;

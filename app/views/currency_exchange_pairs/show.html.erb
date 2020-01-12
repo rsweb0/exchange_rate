@@ -47,3 +47,7 @@
     </div>
   </div>
 </div>
+
+<%= render :partial => 'table' %>
+
+<%= line_chart @current_exchange.historic_data, xtitle: "Duration (#{@currency_exchange_pair.number_of_weeks} weeks)", ytitle: "Price", min: @current_exchange.minmax_rate[0], max: @current_exchange.minmax_rate[1] %>

@@ -1,0 +1,33 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Base currency</th>
+      <th>Target currency</th>
+      <th>Date</th>
+      <th>Exchange rate</th>
+      <th>Valuation</th>
+      <th> P/L </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @current_exchange.historic_data.each do |exchange_rate| %>
+        <tr class="exchange-rate-<%= exchange_rate[1] %>">
+          <td> <%= @currency_exchange_pair.base_currency %> </td>
+          <td> <%= @currency_exchange_pair.target_currency %> </td>
+          <td> <%= exchange_rate[0] %> </td>
+          <td> <%= exchange_rate[1] %> </td>
+          <% # TBD: move to decorator  %>
+          <td> <%= @currency_exchange_pair.amount * (exchange_rate[1] || 0) %> </td>
+          <td> <%= @currency_exchange_pair.amount * ((exchange_rate[1] ||0) - @current_exchange.current_rate) %> </td>
+        </tr>
+      <%end%>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var weekpicker = $("#weekpicker1").weekpicker({ minDate: "<%= @current_exchange.minmax_date[0] %>", maxDate: "<%= Date.today %>"});
+
+    highlightDataTable(weekpicker);
+  });
+</script>
