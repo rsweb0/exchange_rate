@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe CurrencyExchangeRate, type: :model do
-  it { should validate_presence_of(:base_currency) }
-  it { should validate_presence_of(:target_currency) }
+  it do
+    should validate_inclusion_of(:base_currency)
+      .in_array(Constants::SUPPORTED_CURRENCIES)
+  end
+
+  it do
+    should validate_inclusion_of(:target_currency)
+      .in_array(Constants::SUPPORTED_CURRENCIES)
+  end
+
   it { should validate_presence_of(:rate) }
   it { should validate_presence_of(:date) }
 
