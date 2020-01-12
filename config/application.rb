@@ -20,6 +20,7 @@ require "sprockets/railtie"
 # load all ruby files in the directory "lib" and its subdirectories
 require_all 'lib/fixer/api/*.rb'
 require_all 'lib/fixer/request.rb'
+require_all 'lib/currency_exchange.rb'
 require_all 'lib'
 
 # Require the gems listed in Gemfile, including any gems

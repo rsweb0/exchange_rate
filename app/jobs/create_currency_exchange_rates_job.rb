@@ -15,7 +15,7 @@ class CreateCurrencyExchangeRatesJob < ApplicationJob
   end
 
   def fetch_and_save_historical_data(date)
-    data = Fixer::Client.new.historical(date.strftime('%Y-%m-%d'))
+    data = CurrencyExchange.new.client.historical(date.strftime('%Y-%m-%d'))
     date = data['date'].to_date
     currency_exchange_rate_records = []
     data['rates'].each do |target_currency, rate|

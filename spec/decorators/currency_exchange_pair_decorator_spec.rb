@@ -7,9 +7,15 @@ RSpec.describe CurrencyExchangePairDecorator do
   end
 
   before do
+    travel_to Time.local(2020, 1, 12)
     @cur_exchange = FactoryBot.create(:currency_exchange_rate, date: Date.today, rate: 1.56)
     @exchange_one = FactoryBot.create(:currency_exchange_rate, date: 1.days.ago.to_date, rate: 1.2)
   end
+
+  after do
+    travel_back
+  end
+
   it 'currency_exchange_pair should respond to decorate' do
     expect(object.respond_to?(:decorate)).to eq true
   end

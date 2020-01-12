@@ -2,8 +2,8 @@
 
 namespace :feed do
   desc 'Import last 1year currency_exchange_rates from fixer.io'
-  task import_fixer_records: :environment do
-    client = Fixer::Client.new
+  task import_currency_exchange_records: :environment do
+    client = CurrencyExchange.new.client
     existing_dates = CurrencyExchangeRate
                      .where(date: [1.years.ago.to_date..Date.today])
                      .distinct.pluck(:date)
@@ -20,12 +20,12 @@ namespace :feed do
   end
 
   desc 'Import latest currency_exchange_rates every hour from fixer.io'
-  task import_latest_fixer_record: :environment do
+  task import_latest_currency_exchange_record: :environment do
     CreateCurrencyExchangeRatesJob.perform_now(Date.today.to_s)
   end
 
   desc 'Import yesterday currency_exchange_rates from fixer.io'
-  task import_yesterday_fixer_record: :environment do
+  task import_yesterday_currency_exchange_record: :environment do
     CreateCurrencyExchangeRatesJob.perform_now(1.day.ago.to_date.to_s)
   end
 end
