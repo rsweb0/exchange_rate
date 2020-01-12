@@ -1,0 +1,42 @@
+<%- model_class = CurrencyExchangePair -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:base_currency) %></th>
+      <th><%= model_class.human_attribute_name(:target_currency) %></th>
+      <th><%= model_class.human_attribute_name(:number_of_weeks) %></th>
+      <th><%= model_class.human_attribute_name(:amount_in_base_currency) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @currency_exchange_pairs.each do |currency_exchange_pair| %>
+      <tr>
+        <td><%= link_to currency_exchange_pair.id, currency_exchange_pair_path(currency_exchange_pair) %></td>
+        <td><%= currency_exchange_pair.base_currency %></td>
+        <td><%= currency_exchange_pair.target_currency %></td>
+        <td><%= currency_exchange_pair.number_of_weeks %></td>
+        <td><%= currency_exchange_pair.amount %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      currency_exchange_pair_path(currency_exchange_pair), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_currency_exchange_pair_path(currency_exchange_pair), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      currency_exchange_pair_path(currency_exchange_pair),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_currency_exchange_pair_path,
+            :class => 'btn btn-primary' %>

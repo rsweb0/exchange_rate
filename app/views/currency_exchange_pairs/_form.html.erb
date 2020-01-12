@@ -1,0 +1,41 @@
+<%= form_for @currency_exchange_pair, :html => { :class => "form-horizontal currency_exchange_pair" } do |f| %>
+
+
+  <div class="form-group">
+    <%= f.label :base_currency, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :base_currency, :class => 'form-control', :required => true %>
+      <%=f.error_span(:base_currency) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :target_currency, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :target_currency, :class => 'form-control', :required => true %>
+      <%=f.error_span(:target_currency) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :amount, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :amount, :class => 'form-control ', :required => true %>
+      <%=f.error_span(:amount) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :number_of_weeks, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :number_of_weeks, :class => 'form-control', :required => true %>
+      <%=f.error_span(:number_of_weeks) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                currency_exchange_pairs_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
