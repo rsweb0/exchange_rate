@@ -57,13 +57,15 @@ To run this application in development you will either want to have
 - Rails 6.0.2
 
 You may need to change the credentials for Postgres according to your specific configuration.
-
 ###### To setup DB Run:
 * `rake db:create`
 * `rake db:migrate`
 
 ###### To seed last 1 yaer exchange_rate from `fixer.io`:
-* `rake feed:import_fixer_records`
+* `rake feed:import_currency_exchange_records`
+
+###### .env file configurations
+* Need to add `FIXER_API_KEY` in .env file
 
 ###### Run rails app using
 * `rails s`
